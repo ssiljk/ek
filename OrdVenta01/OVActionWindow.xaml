@@ -1,0 +1,16 @@
+﻿<Window x:Class="OrdVenta01.OVActionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OrdVenta01"
+        mc:Ignorable="d"
+        Title="Nota de Venta" Height="200
+        " Width="200">
+    <StackPanel>
+        <Label Name="idLabel" Margin="10,10,10,10" FontSize="18"></Label>
+        <Button Margin="10,10,10,10" MinHeight="60" Name="Print" Click="Print_Click">Imprimir</Button>
+        
+       
+    </StackPanel>
+</Window>

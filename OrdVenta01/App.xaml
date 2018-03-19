@@ -1,0 +1,109 @@
+﻿<Application x:Class="OrdVenta01.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:OrdVenta01"
+             xmlns:src="clr-namespace:OrdVenta01"
+             
+             Startup="AppStartup">
+    <Application.Resources>
+        <local:MIKO2016DataSet2 x:Key="mIKO2016DataSet2"/>
+        <local:MIKO2016DataSet1 x:Key="mIKO2016DataSet1"/>
+        <local:MIKO2016DataSet x:Key="mIKO2016DataSet"/>
+     
+        <src:DateConverter x:Key="dateConverter" />
+        <src:Estado1ToCanalConverter x:Key="estado1ToCanalConverter"  />
+        <src:Estado3ToNVAccionContentConverter x:Key="estado3ToNVAccionContentConverter"  />
+        <src:Estado3ToVisibilityRecibidoConverter x:Key="estado3ToVisibilityRecibidoConverter"  />
+        <src:Estado3ToVisibilityListoConverter x:Key="estado3ToVisibilityListoConverter"  />
+        <src:Estado3ToVisibilityEntregadoConverter x:Key="estado3ToVisibilityEntregadoConverter"  />
+        <src:TipoDespachoToBkgndConverter x:Key="tipoDespachoToBkgndConverter"
+               
+         />
+        <Style x:Key="textStyleTextBox" TargetType="TextBox">
+            <Setter Property="Foreground" Value="Beige" />
+            <Setter Property="MaxLength" Value="40" />
+            <Setter Property="Width" Value="392" />
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                      Value="{Binding RelativeSource={RelativeSource Self},
+                              Path=(Validation.Errors)[0].ErrorContent}"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <DataTemplate DataType="{x:Type src:OrdenVentaItem}">
+            <Border BorderThickness="1" BorderBrush="Gray"
+                    Background="{Binding Path=Estado2, Converter={StaticResource tipoDespachoToBkgndConverter}}"
+                    Padding="7" Name="border" Margin="3" Width="1100" MinHeight="96">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="160"/>
+                        <ColumnDefinition Width="175"/>
+                        <ColumnDefinition Width="195"/>
+                        <ColumnDefinition Width="195"/>
+                        <ColumnDefinition Width="195"/>
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="1"
+                               Name="idText" Text="{Binding Path= NvNumero}" FontSize="40" Margin="0,0,0,0" FontWeight="ExtraBold"  
+                               Background="{Binding Path=Estado2, Converter={StaticResource tipoDespachoToBkgndConverter}}"
+                               MouseDown="idText_MouseDown"
+                               />
+                    <TextBlock Name="Fecha" Grid.Column="0" Grid.Row="1"  FontSize="20" Margin="0,0,0,0" 
+                        Text="{Binding Path=DateCreacion, Converter={StaticResource dateConverter}}" 
+                       />
+                    <TextBlock Name="Estado1" Grid.Row="0" Grid.Column="1" TextAlignment="Left" FontSize="15" Margin="0,0,0,0" 
+                        Text="{Binding Path=Estado1, Converter={StaticResource estado1ToCanalConverter}}" 
+                       />
+                    <TextBlock Name="Observ1" Grid.Row="0" Grid.Column="2" TextAlignment="Left" FontSize="15" Margin="0,0,0,0" 
+                        Text="{Binding Path=Observ1}" 
+                       />
+                    <TextBlock Name="Recibido" Grid.RowSpan="2"  Grid.Row="0" Grid.Column="3"  FontSize="20" TextAlignment="Center" Margin="0,0,0,0" 
+                        Text="{Binding Path=DateRecepcion, Converter={StaticResource dateConverter}}"
+                        MouseDown="Recibido_MouseDown"
+                       />
+                    <Image Source ="/images/checkmark.png" MaxHeight="50" Grid.Row="1" Grid.Column="3" 
+                           Visibility="{Binding Path=Estado3, Converter={StaticResource estado3ToVisibilityRecibidoConverter}}"
+                       />
+                    <TextBlock Name="Listo" Grid.RowSpan="2" Grid.Row="0" Grid.Column="4" FontSize="20" TextAlignment="Center" Margin="0,0,0,0" 
+                        Text="{Binding Path=DateLista, Converter={StaticResource dateConverter}}"
+                        MouseDown="Listo_MouseDown"
+                       />
+                    <Image Source ="/images/checkmark.png" MaxHeight="50" Grid.Row="1" Grid.Column="4" 
+                           Visibility="{Binding Path=Estado3, Converter={StaticResource estado3ToVisibilityListoConverter}}"
+                       />
+                    <TextBlock Name="Entregado" Grid.RowSpan="2" Grid.Row="0" Grid.Column="5" FontSize="20" TextAlignment="Center" Margin="0,0,0,0" 
+                        Text="{Binding Path=DateEntrega, Converter={StaticResource dateConverter}}"
+                        MouseDown="Entregado_MouseDown"
+                       />
+                    <Image Source ="/images/checkmark.png" MaxHeight="50" Grid.Row="1" Grid.Column="5" 
+                           Visibility="{Binding Path=Estado3, Converter={StaticResource estado3ToVisibilityEntregadoConverter}}"
+                       />
+                    
+                    <!--<TextBlock Name="Nombre1" Grid.Row="1" Grid.Column="2" 
+                        Text="{Binding Path=Estado2}" 
+                          
+                       />-->
+
+                    <!--<ComboBox Name="cbEstado3" Grid.Row="1" Grid.Column="4" SelectedItem="{Binding Path=Estado3, Mode=OneWay}"  SelectedValue ="{Binding Path=Estado3, Mode=TwoWay}">
+                    </ComboBox>-->
+                    <!--<TextBlock Name="Estado3" Grid.Row="0" Grid.Column="4" Text="{Binding Path=Estado3}"/>
+                    <TextBlock Name="FechaRecepcion" Grid.Row="1" Grid.Column="4" Text="{Binding Path=DateRecepcion, Converter={StaticResource dateConverter}}"/> -->
+                    <!--<Button Name="NVAccion"  Grid.Row="0" Grid.Column="4" FontSize="26" Content="{Binding Path=Estado3, Converter={StaticResource estado3ToNVAccionContentConverter}}"
+                            MinHeight="75" MouseDoubleClick ="NVAccion_MouseDoubleClick" />-->
+
+
+                </Grid>
+            </Border>
+            
+        </DataTemplate>
+
+    </Application.Resources>
+</Application>

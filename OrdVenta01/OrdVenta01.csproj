@@ -102,7 +102,6 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Usuario.cs" />
     <Compile Include="CrystalReport3.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -163,6 +162,7 @@
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
     </ApplicationDefinition>
+    <Compile Include="PrintReportWhenReceived.cs" />
     <Compile Include="ReportPreView.xaml.cs">
       <DependentUpon>ReportPreView.xaml</DependentUpon>
     </Compile>

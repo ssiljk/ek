@@ -445,12 +445,12 @@ namespace OrdVenta01
             {
                 TextBlock tb = new TextBlock();
                 tb = (TextBlock)sender;
-                Console.WriteLine("item idtext click ={0}", tb.Text);
+                Console.WriteLine("item idtext click ={0}", tb.Text);    
                 //OVActionWindow oVAction = new OVActionWindow(tb.Text, ordenVentaItems);
                 //oVAction.ShowDialog();
                 //Console.WriteLine("print click ={0}", nvnumero);
 
-                WindowRpt win3 = new WindowRpt(Convert.ToInt32(tb.Text));
+                WindowRpt win3 = new WindowRpt(Convert.ToInt32(tb.Text));    // Se llama la ventana de windowreport y alli se hace el preview del crystal report
                 win3.Show();
 
             }

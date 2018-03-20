@@ -44,5 +44,14 @@ namespace OrdVenta01.Properties {
                 return ((string)(this["ConnectionString"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("N")]
+        public string Ventas {
+            get {
+                return ((string)(this["Ventas"]));
+            }
+        }
     }
 }

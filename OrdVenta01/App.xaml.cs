@@ -27,19 +27,33 @@ namespace OrdVenta01
         private OrdVenta01.MIKO2016DataSet1TableAdapters.ek_nventaTableAdapter mIKO2016DataSet1ek_nventaTableAdapter;
         private OrdVenta01.MIKO2016DataSet2TableAdapters.ek_TraeInfoClienteTableAdapter mIKO2016DataSet2ek_TraeInfoClienteTableAdapter;
         //private System.Windows.Data.CollectionViewSource nw_nventa1ViewSource;
+       
         private ObservableCollection<OrdenVentaItem> ordenVentaItems = new ObservableCollection<OrdenVentaItem>();
+       
         private string mensajeNvSinCanal;
+        private bool esVentas;
 
         void AppStartup(object sender, StartupEventArgs args)
         {
-           
+            string v;
             DataRow[] currentRows; //< remover
             mIKO2016DataSet = ((OrdVenta01.MIKO2016DataSet)(this.FindResource("mIKO2016DataSet")));
             mIKO2016DataSet1 = ((OrdVenta01.MIKO2016DataSet1)(this.FindResource("mIKO2016DataSet1")));
             mIKO2016DataSet2 = ((OrdVenta01.MIKO2016DataSet2)(this.FindResource("mIKO2016DataSet2")));
             Console.WriteLine("AppStartup");
 
+            v = OrdVenta01.Properties.Settings.Default.Ventas.ToString();
+            if ((v.Equals("Y", StringComparison.InvariantCultureIgnoreCase)))
+            {
+                esVentas = true;
+            }
+            else
+            {
+                esVentas = false;
+            }
+          
             AseguraCanalOk();
+           
 
             CargaEKfromDB();
 
@@ -154,9 +168,12 @@ namespace OrdVenta01
                 }
                 else
                 {
-                    mensajeNvSinCanal = "Coloque el Canal De Venta a las siguientes Notas de Venta: " + mensajeNvSinCanal;
-                    Console.WriteLine("Notas con peo{0}", mensajeNvSinCanal);
-                    MessageBoxResult result = MessageBox.Show(mensajeNvSinCanal);
+                    if (esVentas)
+                    {
+                        mensajeNvSinCanal = "Coloque el Canal De Venta a las siguientes Notas de Venta: " + mensajeNvSinCanal;
+                        Console.WriteLine("Notas con peo{0}", mensajeNvSinCanal);
+                        MessageBoxResult result = MessageBox.Show(mensajeNvSinCanal);
+                    }
                     dataOk = false;
                 }
 
@@ -424,11 +441,14 @@ namespace OrdVenta01
 
         private void idText_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            TextBlock tb = new TextBlock();
-            tb = (TextBlock)sender;
-            Console.WriteLine("item listbox click ={0}", tb.Text);
-            OVActionWindow oVAction = new OVActionWindow(tb.Text, ordenVentaItems);
-            oVAction.ShowDialog();
+            if (!esVentas)
+            {
+                TextBlock tb = new TextBlock();
+                tb = (TextBlock)sender;
+                Console.WriteLine("item listbox click ={0}", tb.Text);
+                OVActionWindow oVAction = new OVActionWindow(tb.Text, ordenVentaItems);
+                oVAction.ShowDialog();
+            }
 
         }
 
@@ -476,8 +496,9 @@ namespace OrdVenta01
             DataRow[] currentRows;
             DataRow[] cliCurrent;
             int i = 0;
-
+            
             AseguraCanalOk();
+            
 
             //
             // Carga desde la DB los registros del dia actual de la tabla nw_nventa usando Fill
@@ -906,107 +927,113 @@ namespace OrdVenta01
 
         private void Recibido_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            OrdenVentaItem ovi = new OrdenVentaItem();
-
-
-            TextBlock tbk = new TextBlock();
-            tbk = (TextBlock)sender;
-            ovi = (OrdenVentaItem)tbk.DataContext;
-            MIKO2016DataSet1.ek_nventaRow ek_NventaRow = mIKO2016DataSet1.ek_nventa.FindBynvNumero(ovi.NvNumero);
-            if (ovi.Estado3.Trim() == "Nueva")
+            if (!esVentas)
             {
-                foreach (var itr in ordenVentaItems)
+                OrdenVentaItem ovi = new OrdenVentaItem();
+
+
+                TextBlock tbk = new TextBlock();
+                tbk = (TextBlock)sender;
+                ovi = (OrdenVentaItem)tbk.DataContext;
+                MIKO2016DataSet1.ek_nventaRow ek_NventaRow = mIKO2016DataSet1.ek_nventa.FindBynvNumero(ovi.NvNumero);
+                if (ovi.Estado3.Trim() == "Nueva")
                 {
-                    if (ovi.NvNumero == itr.NvNumero)
+                    foreach (var itr in ordenVentaItems)
                     {
-                        itr.Estado3 = "Recibida";
-                        itr.Estado2 = 4;
-                        itr.DateRecepcion = DateTime.Now;
-                        ek_NventaRow.estado3 = "Recibida";
-                        ek_NventaRow.estado2 = 4;
-                        ek_NventaRow.dateRecepcion = (DateTime)itr.DateRecepcion;
-                        break;
+                        if (ovi.NvNumero == itr.NvNumero)
+                        {
+                            itr.Estado3 = "Recibida";
+                            itr.Estado2 = 4;
+                            itr.DateRecepcion = DateTime.Now;
+                            ek_NventaRow.estado3 = "Recibida";
+                            ek_NventaRow.estado2 = 4;
+                            ek_NventaRow.dateRecepcion = (DateTime)itr.DateRecepcion;
+                            break;
+                        }
                     }
                 }
+
+
+                Console.WriteLine("Accion\t");
+                Console.WriteLine("ov{0}", ovi.NvNumero);
+
+                SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
+                mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
             }
-             
-
-            Console.WriteLine("Accion\t");
-            Console.WriteLine("ov{0}", ovi.NvNumero);
-
-            SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
-            mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
-
         }
 
         private void Listo_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            OrdenVentaItem ovi = new OrdenVentaItem();
-
-
-            TextBlock tbk = new TextBlock();
-            tbk = (TextBlock)sender;
-            ovi = (OrdenVentaItem)tbk.DataContext;
-            MIKO2016DataSet1.ek_nventaRow ek_NventaRow = mIKO2016DataSet1.ek_nventa.FindBynvNumero(ovi.NvNumero);
-            if (ovi.Estado3.Trim() == "Recibida")
+            if (!esVentas)
             {
-                foreach (var itr in ordenVentaItems)
+                OrdenVentaItem ovi = new OrdenVentaItem();
+
+
+                TextBlock tbk = new TextBlock();
+                tbk = (TextBlock)sender;
+                ovi = (OrdenVentaItem)tbk.DataContext;
+                MIKO2016DataSet1.ek_nventaRow ek_NventaRow = mIKO2016DataSet1.ek_nventa.FindBynvNumero(ovi.NvNumero);
+                if (ovi.Estado3.Trim() == "Recibida")
                 {
-                    if (ovi.NvNumero == itr.NvNumero)
+                    foreach (var itr in ordenVentaItems)
                     {
-                        itr.Estado3 = "Lista";
-                        itr.Estado2 = 5;
-                        itr.DateLista = DateTime.Now;
-                        ek_NventaRow.estado3 = "Lista";
-                        ek_NventaRow.estado2 = 5;
-                        ek_NventaRow.dateLista = (DateTime)itr.DateLista;
-                        break;
+                        if (ovi.NvNumero == itr.NvNumero)
+                        {
+                            itr.Estado3 = "Lista";
+                            itr.Estado2 = 5;
+                            itr.DateLista = DateTime.Now;
+                            ek_NventaRow.estado3 = "Lista";
+                            ek_NventaRow.estado2 = 5;
+                            ek_NventaRow.dateLista = (DateTime)itr.DateLista;
+                            break;
+                        }
                     }
                 }
+
+
+                Console.WriteLine("Accion\t");
+                Console.WriteLine("ov{0}", ovi.NvNumero);
+
+                SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
+                mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
             }
-
-
-            Console.WriteLine("Accion\t");
-            Console.WriteLine("ov{0}", ovi.NvNumero);
-
-            SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
-            mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
-
         }
 
         private void Entregado_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
-            OrdenVentaItem ovi = new OrdenVentaItem();
-
-
-            TextBlock tbk = new TextBlock();
-            tbk = (TextBlock)sender;
-            ovi = (OrdenVentaItem)tbk.DataContext;
-            MIKO2016DataSet1.ek_nventaRow ek_NventaRow = mIKO2016DataSet1.ek_nventa.FindBynvNumero(ovi.NvNumero);
-            if (ovi.Estado3.Trim() == "Lista")
+            if (!esVentas)
             {
-                foreach (var itr in ordenVentaItems)
+                OrdenVentaItem ovi = new OrdenVentaItem();
+
+
+                TextBlock tbk = new TextBlock();
+                tbk = (TextBlock)sender;
+                ovi = (OrdenVentaItem)tbk.DataContext;
+                MIKO2016DataSet1.ek_nventaRow ek_NventaRow = mIKO2016DataSet1.ek_nventa.FindBynvNumero(ovi.NvNumero);
+                if (ovi.Estado3.Trim() == "Lista")
                 {
-                    if (ovi.NvNumero == itr.NvNumero)
+                    foreach (var itr in ordenVentaItems)
                     {
-                        itr.Estado3 = "Entregada";
-                        itr.Estado2 = 6;
-                        itr.DateEntrega = DateTime.Now;
-                        ek_NventaRow.estado3 = "Entregada";
-                        ek_NventaRow.estado2 = 6;
-                        ek_NventaRow.dateEntrega = (DateTime)itr.DateEntrega;
-                        break;
+                        if (ovi.NvNumero == itr.NvNumero)
+                        {
+                            itr.Estado3 = "Entregada";
+                            itr.Estado2 = 6;
+                            itr.DateEntrega = DateTime.Now;
+                            ek_NventaRow.estado3 = "Entregada";
+                            ek_NventaRow.estado2 = 6;
+                            ek_NventaRow.dateEntrega = (DateTime)itr.DateEntrega;
+                            break;
+                        }
                     }
                 }
+
+
+                Console.WriteLine("Accion\t");
+                Console.WriteLine("ov{0}", ovi.NvNumero);
+
+                SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
+                mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
             }
-
-
-            Console.WriteLine("Accion\t");
-            Console.WriteLine("ov{0}", ovi.NvNumero);
-
-            SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
-            mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
-
         }
 
         private void RemoveNotasEntregadas()

@@ -131,7 +131,19 @@ namespace OrdVenta01
                                                   c.DesProd, c.DesProd2, c.CodUMed, c.PesoKgs, c.Usuario, c.UsuarioGeneraDocto});
             }
            // report.SetDataSource(rowsPick);
+
             crystalReportsViewer1.ViewerCore.ReportSource = report;
+            //try
+            //{
+            //    System.Drawing.Printing.PrintDocument printDocument = new System.Drawing.Printing.PrintDocument();
+            //    report.PrintOptions.PrinterName = printDocument.PrinterSettings.PrinterName;
+            //    report.PrintToPrinter(1, true, 0, 0);
+            //}
+            //catch (Exception err)
+            //{
+            //    MessageBox.Show(err.ToString());
+            //}
+
         }
     }
 }

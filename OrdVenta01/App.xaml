@@ -62,7 +62,7 @@
                     <TextBlock Name="Estado1" Grid.Row="0" Grid.Column="1" TextAlignment="Left" FontSize="15" Margin="0,0,0,0" 
                         Text="{Binding Path=Estado1, Converter={StaticResource estado1ToCanalConverter}}" 
                        />
-                    <TextBlock Name="Observ1" Grid.Row="0" Grid.Column="2" TextAlignment="Left" FontSize="15" Margin="0,0,0,0" 
+                    <TextBlock Name="Observ1" Grid.Row="0" Grid.RowSpan="2" TextWrapping="Wrap" Grid.Column="2" TextAlignment="Left" FontSize="15" Margin="0,0,0,0" 
                         Text="{Binding Path=Observ1}" 
                        />
                     <TextBlock Name="Recibido" Grid.RowSpan="2"  Grid.Row="0" Grid.Column="3"  FontSize="20" TextAlignment="Center" Margin="0,0,0,0" 

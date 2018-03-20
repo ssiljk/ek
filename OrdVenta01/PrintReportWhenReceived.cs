@@ -20,6 +20,9 @@ namespace OrdVenta01
 
     class PrintReportWhenReceived
     {
+        //
+        //Imprime el crystal report directamente sin hacer preview
+        //
         private int nvNumero;
         private OrdVenta01.MIKO2016DataSet3 mIKO2016DataSet3;
         private OrdVenta01.MIKO2016DataSet3TableAdapters.nw_nvmovikitTableAdapter mIKO2016DataSet3nw_nvmovikitTableAdapter;

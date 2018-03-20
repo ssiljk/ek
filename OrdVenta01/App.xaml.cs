@@ -445,9 +445,14 @@ namespace OrdVenta01
             {
                 TextBlock tb = new TextBlock();
                 tb = (TextBlock)sender;
-                Console.WriteLine("item listbox click ={0}", tb.Text);
-                OVActionWindow oVAction = new OVActionWindow(tb.Text, ordenVentaItems);
-                oVAction.ShowDialog();
+                Console.WriteLine("item idtext click ={0}", tb.Text);
+                //OVActionWindow oVAction = new OVActionWindow(tb.Text, ordenVentaItems);
+                //oVAction.ShowDialog();
+                //Console.WriteLine("print click ={0}", nvnumero);
+
+                WindowRpt win3 = new WindowRpt(Convert.ToInt32(tb.Text));
+                win3.Show();
+
             }
 
         }

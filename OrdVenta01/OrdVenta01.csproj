@@ -155,9 +155,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MIKO2016DataSet5.xsd</DependentUpon>
     </Compile>
-    <Compile Include="OVActionWindow.xaml.cs">
-      <DependentUpon>OVActionWindow.xaml</DependentUpon>
-    </Compile>
     <ApplicationDefinition Include="App.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
@@ -174,10 +171,6 @@
     <Page Include="MainWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>XamlIntelliSenseFileGenerator</Generator>
-    </Page>
-    <Page Include="OVActionWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="ReportPreView.xaml">
       <SubType>Designer</SubType>

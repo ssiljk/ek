@@ -165,6 +165,7 @@
     </Compile>
     <Compile Include="TipoDespachoToBackgroundConverter.cs" />
     <Compile Include="TipoDespachoToBkgndConverter.cs" />
+    <Compile Include="TipoDespachoToFrgndConverter.cs" />
     <Compile Include="WindowRpt.xaml.cs">
       <DependentUpon>WindowRpt.xaml</DependentUpon>
     </Compile>

@@ -37,10 +37,10 @@
             <ColumnDefinition Width="190"/>
             <ColumnDefinition Width="190"/>
             <ColumnDefinition Width="190"/>
-            <ColumnDefinition Width="Auto"/>
+           
 
         </Grid.ColumnDefinitions>
-
+        <!--<ColumnDefinition Width="Auto"/>-->
         <ListBox Name="Master" Grid.ColumnSpan="6" Grid.Row="1" Margin="8"
             ItemsSource="{Binding Source={StaticResource listingDataView}}">
 

@@ -34,7 +34,7 @@
         <DataTemplate DataType="{x:Type src:OrdenVentaItem}">
             <Border BorderThickness="1" BorderBrush="Gray"
                     Background="{Binding Path=Estado2, Converter={StaticResource tipoDespachoToBkgndConverter}}"
-                    Padding="7" Name="border" Margin="3" Width="1100" MinHeight="15">
+                    Padding="7" Name="border" Margin="3" Width="1100" MinHeight="96">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition/>
@@ -51,24 +51,24 @@
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Row="0" Grid.Column="0" Grid.RowSpan="1"
-                               Name="idText" Text="{Binding Path= NvNumero}" FontSize="20" Margin="0,0,0,0" FontWeight="ExtraBold"  
+                               Name="idText" Text="{Binding Path= NvNumero}" FontSize="40" Margin="0,0,0,0" FontWeight="ExtraBold"  
                                Background="{Binding Path=Estado2, Converter={StaticResource tipoDespachoToBkgndConverter}}"
                                Foreground="{Binding Path=Estado2, Converter={StaticResource tipoDespachoToFrgndConverter}}"
                                MouseDown="idText_MouseDown"
                                />
-                    <TextBlock Name="Fecha" Grid.Column="0" Grid.Row="1"  FontSize="10" Margin="0,0,0,0" 
+                    <TextBlock Name="Fecha" Grid.Column="0" Grid.Row="1"  FontSize="20" Margin="0,0,0,0" 
                         Foreground="{Binding Path=Estado2, Converter={StaticResource tipoDespachoToFrgndConverter}}"
                         Text="{Binding Path=DateCreacion, Converter={StaticResource dateConverter}}" 
                        />
-                    <TextBlock Name="Estado1" Grid.Row="0" Grid.Column="1" TextAlignment="Left" FontSize="10" Margin="0,0,0,0" 
+                    <TextBlock Name="Estado1" Grid.Row="0" Grid.Column="1" TextAlignment="Left" FontSize="15" Margin="0,0,0,0" 
                         Foreground="{Binding Path=Estado2, Converter={StaticResource tipoDespachoToFrgndConverter}}"
                         Text="{Binding Path=Estado1, Converter={StaticResource estado1ToCanalConverter}}" 
                        />
-                    <TextBlock Name="Observ1" Grid.Row="0" Grid.RowSpan="2" TextWrapping="Wrap" Grid.Column="2" TextAlignment="Left" FontSize="10" Margin="0,0,0,0" 
+                    <TextBlock Name="Observ1" Grid.Row="0" Grid.RowSpan="2" TextWrapping="Wrap" Grid.Column="2" TextAlignment="Left" FontSize="15" Margin="0,0,0,0" 
                         Foreground="{Binding Path=Estado2, Converter={StaticResource tipoDespachoToFrgndConverter}}"
                         Text="{Binding Path=Observ1}" 
                        />
-                    <TextBlock Name="Recibido" Grid.RowSpan="2"  Grid.Row="0" Grid.Column="3"  FontSize="10" TextAlignment="Center" Margin="0,0,0,0" 
+                    <TextBlock Name="Recibido" Grid.RowSpan="2"  Grid.Row="0" Grid.Column="3"  FontSize="20" TextAlignment="Center" Margin="0,0,0,0" 
                         Text="{Binding Path=DateRecepcion, Converter={StaticResource dateConverter}}"
                         Foreground="{Binding Path=Estado2, Converter={StaticResource tipoDespachoToFrgndConverter}}"
                         MouseDown="Recibido_MouseDown"
@@ -76,7 +76,7 @@
                     <Image Source ="/images/checkmark.png" MaxHeight="50" Grid.Row="1" Grid.Column="3" 
                            Visibility="{Binding Path=Estado3, Converter={StaticResource estado3ToVisibilityRecibidoConverter}}"
                        />
-                    <TextBlock Name="Listo" Grid.RowSpan="2" Grid.Row="0" Grid.Column="4" FontSize="10" TextAlignment="Center" Margin="0,0,0,0" 
+                    <TextBlock Name="Listo" Grid.RowSpan="2" Grid.Row="0" Grid.Column="4" FontSize="20" TextAlignment="Center" Margin="0,0,0,0" 
                         Text="{Binding Path=DateLista, Converter={StaticResource dateConverter}}"
                         Foreground="{Binding Path=Estado2, Converter={StaticResource tipoDespachoToFrgndConverter}}"
                         MouseDown="Listo_MouseDown"
@@ -84,7 +84,7 @@
                     <Image Source ="/images/checkmark.png" MaxHeight="50" Grid.Row="1" Grid.Column="4" 
                            Visibility="{Binding Path=Estado3, Converter={StaticResource estado3ToVisibilityListoConverter}}"
                        />
-                    <TextBlock Name="Entregado" Grid.RowSpan="2" Grid.Row="0" Grid.Column="5" FontSize="10" TextAlignment="Center" Margin="0,0,0,0" 
+                    <TextBlock Name="Entregado" Grid.RowSpan="2" Grid.Row="0" Grid.Column="5" FontSize="20" TextAlignment="Center" Margin="0,0,0,0" 
                         Text="{Binding Path=DateEntrega, Converter={StaticResource dateConverter}}"
                         Foreground="{Binding Path=Estado2, Converter={StaticResource tipoDespachoToFrgndConverter}}"
                         MouseDown="Entregado_MouseDown"

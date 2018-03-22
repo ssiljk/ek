@@ -168,12 +168,12 @@ namespace OrdVenta01
                 }
                 else
                 {
-                   // if (esVentas)
-                   // {
+                    if (esVentas)
+                    {
                         mensajeNvSinCanal = "Coloque el Canal De Venta a las siguientes Notas de Venta: " + mensajeNvSinCanal;
                         Console.WriteLine("Notas con peo{0}", mensajeNvSinCanal);
                         MessageBoxResult result = MessageBox.Show(mensajeNvSinCanal);
-                    //}
+                    }
                     dataOk = false;
                 }
 

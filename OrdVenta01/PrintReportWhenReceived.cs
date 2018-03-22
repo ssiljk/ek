@@ -36,7 +36,8 @@ namespace OrdVenta01
             mIKO2016DataSet3 = new MIKO2016DataSet3();
             mIKO2016DataSet5 = new MIKO2016DataSet5();
 
-            ReportDocument report = new ReportDocument();   // Report
+            //ReportDocument report = new ReportDocument();   // Report
+            CrystalReport3 report = new CrystalReport3();
 
             //
             // Data del KIT de la tabla nw_movikit
@@ -108,7 +109,7 @@ namespace OrdVenta01
 
             }
             // mIKO2016DataSet.nw_nventa.AcceptChanges();
-            report.Load("../../CrystalReport3.rpt");
+            //report.Load("../../CrystalReport3.rpt");
             using (mIKO2016DataSet5ek_PickingGuide1TableAdapter)
             {
                 report.SetDataSource(from c in mIKO2016DataSet5.ek_PickingGuide1

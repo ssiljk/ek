@@ -22,6 +22,7 @@ namespace OrdVenta01
     /// </summary>
     public partial class WindowRpt : Window
     {
+        string reportPath;
         private int nvnumero;
         private OrdVenta01.MIKO2016DataSet3 mIKO2016DataSet3;
         private OrdVenta01.MIKO2016DataSet3TableAdapters.nw_nvmovikitTableAdapter mIKO2016DataSet3nw_nvmovikitTableAdapter;
@@ -50,7 +51,8 @@ namespace OrdVenta01
             mIKO2016DataSet3 = ((OrdVenta01.MIKO2016DataSet3)(this.FindResource("mIKO2016DataSet3")));
             mIKO2016DataSet5 = ((OrdVenta01.MIKO2016DataSet5)(this.FindResource("mIKO2016DataSet5")));
 
-            ReportDocument report = new ReportDocument();   // Reporte
+            /* ReportDocument report = new ReportDocument();  */ // Reporte
+            CrystalReport3 report = new CrystalReport3();
 
             //
             // Data del KIT de la tabla nw_movikit
@@ -122,14 +124,18 @@ namespace OrdVenta01
 
             }
             // mIKO2016DataSet.nw_nventa.AcceptChanges();
-            try
-            {
-                report.Load("../../CrystalReport3.rpt");
-            }
-            catch (Exception err)
-            {
-                MessageBox.Show(err.ToString());
-            }
+            //reportPath = "../../CrystalReport3.rpt";
+            //// reportPath = System.IO.Path.Combine(Environment.CurrentDirectory, "CrystalReport3.rpt");
+            //try
+            //{
+            //    report.Load(reportPath);
+            //   // report.Load("../../CrystalReport3.rpt");
+            //}
+            //catch (Exception err)
+            //{
+            //    MessageBox.Show(reportPath);
+            //    MessageBox.Show(err.ToString());
+            //}
             using (mIKO2016DataSet5ek_PickingGuide1TableAdapter)
             {
                 report.SetDataSource(from c in mIKO2016DataSet5.ek_PickingGuide1

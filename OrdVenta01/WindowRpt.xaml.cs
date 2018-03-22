@@ -22,7 +22,6 @@ namespace OrdVenta01
     /// </summary>
     public partial class WindowRpt : Window
     {
-        string reportPath;
         private int nvnumero;
         private OrdVenta01.MIKO2016DataSet3 mIKO2016DataSet3;
         private OrdVenta01.MIKO2016DataSet3TableAdapters.nw_nvmovikitTableAdapter mIKO2016DataSet3nw_nvmovikitTableAdapter;
@@ -74,12 +73,21 @@ namespace OrdVenta01
             mIKO2016DataSet5ek_PickingGuide1TableAdapter.FillBy(mIKO2016DataSet5.ek_PickingGuide1,nvnumero);
             DataRow[] rowsPick = mIKO2016DataSet5.ek_PickingGuide1.Select(
                         null, null, DataViewRowState.CurrentRows);
-            foreach(DataRow row in rowsPick)
+
+
+            foreach (DataRow row in rowsPick)
             {
                 if (row["KIT"] == DBNull.Value)
                 {
                     row["KIT"] = " ";
-                }
+                    mIKO2016DataSet3iw_tprodTableAdapter.FillBy(mIKO2016DataSet3.iw_tprod, Convert.ToString(row["CodProd"])); // para el codigo de barras
+                    DataRow[] rowBarra = mIKO2016DataSet3.iw_tprod.Select(
+                                       null, null, DataViewRowState.CurrentRows);
+                    if(rowBarra[0]["CodBarra"] != DBNull.Value)
+                    {
+                        row["Usuario"] = rowBarra[0]["CodBarra"];
+                    }
+                 }
                 else
                 {
                     foreach (DataRow row2 in rowsKit)

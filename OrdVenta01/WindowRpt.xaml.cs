@@ -120,17 +120,24 @@ namespace OrdVenta01
                     }
                 }
 
-            }           
+            }
             // mIKO2016DataSet.nw_nventa.AcceptChanges();
-            report.Load("../../CrystalReport3.rpt");
+            try
+            {
+                report.Load("../../CrystalReport3.rpt");
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show(err.ToString());
+            }
             using (mIKO2016DataSet5ek_PickingGuide1TableAdapter)
             {
                 report.SetDataSource(from c in mIKO2016DataSet5.ek_PickingGuide1
-                                     
+
                                      select new { c.NVNumero, c.nvObser, c.nvCanalNV, c.FechaHoraCreacion, c.nvLinea, c.nvCant, c.KIT, c.NomAux, c.DirAux, c.FonAux1, c.CodProd,
-                                                  c.DesProd, c.DesProd2, c.CodUMed, c.PesoKgs, c.Usuario, c.UsuarioGeneraDocto});
+                                         c.DesProd, c.DesProd2, c.CodUMed, c.PesoKgs, c.Usuario, c.UsuarioGeneraDocto });
             }
-           // report.SetDataSource(rowsPick);
+            // report.SetDataSource(rowsPick);
 
             crystalReportsViewer1.ViewerCore.ReportSource = report;
             //try
@@ -144,6 +151,6 @@ namespace OrdVenta01
             //    MessageBox.Show(err.ToString());
             //}
 
-        }
+            }
     }
 }

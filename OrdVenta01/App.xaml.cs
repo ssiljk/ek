@@ -961,8 +961,8 @@ namespace OrdVenta01
 
                 Console.WriteLine("Accion\t");
                 Console.WriteLine("ov{0}", ovi.NvNumero);
-                //PrintReportWhenReceived pr = new PrintReportWhenReceived();
-                //pr.PrintReport(ovi.NvNumero);
+                PrintReportWhenReceived pr = new PrintReportWhenReceived();
+                pr.PrintReport(ovi.NvNumero);
                 SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
                 mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
             }

@@ -308,8 +308,5 @@
   <ItemGroup>
     <Resource Include="images\check-mark-64.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Resource Include="images\checkmark-white.jpg" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

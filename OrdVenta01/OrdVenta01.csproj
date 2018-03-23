@@ -166,6 +166,7 @@
     <Compile Include="TipoDespachoToBackgroundConverter.cs" />
     <Compile Include="TipoDespachoToBkgndConverter.cs" />
     <Compile Include="TipoDespachoToFrgndConverter.cs" />
+    <Compile Include="TipoDespachoToImgConverter.cs" />
     <Compile Include="WindowRpt.xaml.cs">
       <DependentUpon>WindowRpt.xaml</DependentUpon>
     </Compile>
@@ -303,6 +304,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\checkmark.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\check-mark-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\checkmark-white.jpg" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

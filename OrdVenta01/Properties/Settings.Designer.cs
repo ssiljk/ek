@@ -47,7 +47,7 @@ namespace OrdVenta01.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("N")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Y")]
         public string Ventas {
             get {
                 return ((string)(this["Ventas"]));

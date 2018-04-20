@@ -472,8 +472,15 @@ namespace OrdVenta01
         {
             
             Console.WriteLine("Timer={0}",DateTime.Now.ToLongTimeString());
-            CargaRecurrenteFromDB();
-            RemoveNotasEntregadas();
+            AseguraCanalOk();
+
+
+            CargaEKfromDB();
+
+            CargaInicialColeccionDesdeEw();
+
+            MergeColeccionConEk();
+            //RemoveNotasEntregadas();
             //SystemSounds.Beep.Play();
             //SystemSounds.Asterisk.Play();
             //SystemSounds.Exclamation.Play();
@@ -514,7 +521,7 @@ namespace OrdVenta01
             //-
             currentRows = mIKO2016DataSet.nw_nventa.Select(
             null, null, DataViewRowState.CurrentRows);
-            Console.WriteLine("Dataset ew");
+            Console.WriteLine("Dataset recurrente ew");
             if (currentRows.Length < 1)
                 Console.WriteLine("No Current Rows Found");
             else

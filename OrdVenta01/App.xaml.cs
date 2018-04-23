@@ -476,18 +476,20 @@ namespace OrdVenta01
 
 
             CargaEKfromDB();
-
-            CargaInicialColeccionDesdeEw();
+            CargaRecurrenteFromDB();
+            //CargaInicialColeccionDesdeEw();
 
             MergeColeccionConEk();
-            //RemoveNotasEntregadas();
+            // RemoveNotasEntregadas();
+           
+           // VaciarColleccion();
             //SystemSounds.Beep.Play();
             //SystemSounds.Asterisk.Play();
             //SystemSounds.Exclamation.Play();
-            if (HayCodigoRojo())
-            {
-                SystemSounds.Hand.Play();
-            }
+            //if (HayCodigoRojo())
+            //{
+            //    SystemSounds.Hand.Play();
+            //}
         }
 
         public Boolean HayCodigoRojo()
@@ -1070,6 +1072,20 @@ namespace OrdVenta01
             }
            
 
+        }
+
+        public void VaciarColleccion()
+        {
+            List<OrdenVentaItem> oviList = new List<OrdenVentaItem>();
+            foreach(var itr in OrdenVentaItems)
+            {
+                oviList.Add(itr);
+            }
+            foreach(var itr in oviList)
+            {
+                OrdenVentaItems.Remove(itr);
+            }
+     
         }
         //=============================================
 

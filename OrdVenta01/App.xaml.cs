@@ -10,6 +10,9 @@ using System.Windows.Controls;
 using System.Data.SqlClient;
 using System.Windows.Threading;
 using System.Media;
+using System.Runtime.InteropServices;
+
+
 
 namespace OrdVenta01
 {
@@ -19,6 +22,18 @@ namespace OrdVenta01
 
     public partial class App : Application
     {
+        // Use DllImport to import the Win32 MessageBox function
+        [DllImport("user32.dll", EntryPoint ="MessageBox")]
+        public static extern int MessageBoxUser32(int hWnd, String text, String caption, uint type);
+        const uint MB_TOPMOST = 0x00040000;
+        const uint MB_OK = 0x00000000;
+        const uint MB_OKCANCEL = 0x00000001;
+        const uint MB_ABORTRETRYIGNORE = 0x00000002;
+        const uint MB_YESNOCANCEL = 0x00000003;
+        const uint MB_YESNO = 0x00000004;
+        const uint MB_RETRYCANCEL = 0x00000005;
+
+        //
         private OrdVenta01.MIKO2016DataSet mIKO2016DataSet;
         private OrdVenta01.MIKO2016DataSet1 mIKO2016DataSet1;
         private OrdVenta01.MIKO2016DataSet2 mIKO2016DataSet2;
@@ -172,9 +187,12 @@ namespace OrdVenta01
                     {
                         mensajeNvSinCanal = "Coloque el Canal De Venta a las siguientes Notas de Venta: " + mensajeNvSinCanal;
                         Console.WriteLine("Notas con peo{0}", mensajeNvSinCanal);
-                        MessageBoxResult result = MessageBox.Show(mensajeNvSinCanal);
+
+                        MessageBoxUser32(0, mensajeNvSinCanal, "***Atencion**** Aplicación de Ventas", MB_TOPMOST);
+                        //MessageBoxResult result = MessageBox.Show(mensajeNvSinCanal);
+
                     }
-                    dataOk = false;
+                    dataOk = true;
                 }
 
             } while (!dataOk);
@@ -1087,6 +1105,8 @@ namespace OrdVenta01
             }
      
         }
+
+        
         //=============================================
 
         //==============================================================

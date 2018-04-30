@@ -192,7 +192,7 @@ namespace OrdVenta01
                         //MessageBoxResult result = MessageBox.Show(mensajeNvSinCanal);
 
                     }
-                    dataOk = true;
+                    dataOk = false;
                 }
 
             } while (!dataOk);

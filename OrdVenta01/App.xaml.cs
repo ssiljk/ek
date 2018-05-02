@@ -579,7 +579,7 @@ namespace OrdVenta01
                             drCurrent["dateAux"] = ovItem.DateAux;
                             drCurrent["CodCliente"] = ovItem.CodCliente;
 
-                            //  Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
+                            Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
                             if (drCurrent != null)
                                 try
                                 {
@@ -669,7 +669,7 @@ namespace OrdVenta01
                                 drCurrent["dateAux"] = ovItem.DateAux;
                                 drCurrent["CodCliente"] = ovItem.CodCliente;
 
-                                //  Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
+                                Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
                                 if (drCurrent != null)
                                     try
                                     {
@@ -686,7 +686,7 @@ namespace OrdVenta01
                                     catch (System.Exception ex)
                                     {
 
-                                        //Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
+                                        Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
                                         Console.WriteLine("Exception {0}", ex);
                                     }
 
@@ -774,7 +774,7 @@ namespace OrdVenta01
 
                     }
 
-                    //  Console.WriteLine("Last={0}", ordenVentaItems.Last().NvNumero);
+                      Console.WriteLine("Last={0}", ordenVentaItems.Last().NvNumero);
                 }
             }
             
@@ -855,80 +855,7 @@ namespace OrdVenta01
             return (estado);
         }
 
-        private void NVAccion_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
-        { //ya no se usa borrar
-           
-            OrdenVentaItem ovi = new OrdenVentaItem();
-
-           
-            Button btn = new Button();
-            btn = (Button)sender;
-            ovi = (OrdenVentaItem)btn.DataContext;
-            MIKO2016DataSet1.ek_nventaRow ek_NventaRow = mIKO2016DataSet1.ek_nventa.FindBynvNumero(ovi.NvNumero);
-            switch (Convert.ToString(btn.Content).Trim())
-            {
-                case "Recibir":
-                    {
-                        foreach (var itr in ordenVentaItems)
-                        {
-                            if (ovi.NvNumero == itr.NvNumero)
-                            {
-                                itr.Estado3 = "Recibida";
-                                itr.Estado2 = 4;
-                                itr.DateRecepcion = DateTime.Now;
-                                ek_NventaRow.estado3 = "Recibida";
-                                ek_NventaRow.estado2 = 4;
-                                ek_NventaRow.dateRecepcion = (DateTime)itr.DateRecepcion;
-                                break;
-                            }
-                        }
-                    }
-                    break;
-                case "Completar":
-                    {
-                        foreach (var itr in ordenVentaItems)
-                        {
-                            if (ovi.NvNumero == itr.NvNumero)
-                            {
-                                itr.Estado3 = "Lista";
-                                itr.Estado2 = 5;
-                                itr.DateLista = DateTime.Now;
-                                ek_NventaRow.estado3 = "Lista";
-                                ek_NventaRow.estado2 = 5;
-                                ek_NventaRow.dateLista = (DateTime)itr.DateLista;
-                                break;
-                            }
-                        }
-                    }
-                    break;
-                case "Entregar":
-                    {
-                        foreach (var itr in ordenVentaItems)
-                        {
-                            if (ovi.NvNumero == itr.NvNumero)
-                            {
-                                itr.Estado3 = "Entregada";
-                                itr.Estado2 = 6;
-                                itr.DateEntrega = DateTime.Now;
-                                ek_NventaRow.estado3 = "Entregada";
-                                ek_NventaRow.estado2 = 6;
-                                ek_NventaRow.dateEntrega = (DateTime)itr.DateEntrega;
-                                break;
-                            }
-                        }
-                        OrdenVentaItems.Remove(ovi);
-                    }
-                    break;
-
-            }
-            
-                        
-            Console.WriteLine("Accion\t");
-            Console.WriteLine("ov{0}", ovi.NvNumero);    
-            
-            SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
-            mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
-        }
+       
 
         private void Recibido_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {

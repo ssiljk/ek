@@ -105,53 +105,7 @@ namespace OrdVenta01
             set { this.ordenVentaItems = value; }
         }
 
-        //private void LoadOrdenVentaData()
-        //{
-
-        //    //DataRow row1;
-
-        //    mIKO2016DataSetnw_nventaTableAdapter = new OrdVenta01.MIKO2016DataSetTableAdapters.nw_nventaTableAdapter();
-        //    mIKO2016DataSetnw_nventaTableAdapter.Fill(mIKO2016DataSet.nw_nventa);
-        //    DataRow[] currentRows = mIKO2016DataSet.nw_nventa.Select(
-        //    null, null, DataViewRowState.CurrentRows);
-        //    if (currentRows.Length < 1)
-        //        Console.WriteLine("No Current Rows Found");
-        //    else
-        //    {
-        //        foreach (DataColumn column in mIKO2016DataSet.nw_nventa.Columns)
-        //            Console.Write("\t{0}", column.ColumnName);
-
-        //        //Console.WriteLine("\tRowState");
-
-        //        //
-        //        foreach (DataRow row in currentRows)
-        //        {
-        //            foreach (DataColumn column in mIKO2016DataSet.nw_nventa.Columns)
-        //                Console.Write("\t{0}", row[column]);
-
-        //            Console.WriteLine("\t" + row.RowState);
-        //        }
-        //        //for (int i = 0; i < currentRows.Length; i++)
-        //        //{
-        //        //    in
-        //        //}
-        //        //Console.WriteLine("\t" + currentRows[0]["NVNumero"]);
-        //        //Console.WriteLine("\t" + currentRows[0]["NVFem"]);
-        //        //Console.WriteLine("\t" + currentRows[0]["Estado"]);
-        //        //Console.WriteLine("\t" + Convert.ChangeType(currentRows[0]["Estado"], typeof(Estado)));
-
-        //        //Item item = new Item((int)currentRows[i]["NVNumero"], (DateTime)currentRows[i]["nvFem"], (String)currentRows[i]["Estado"]);
-        //        //this.items.Add(item);
-        //        //}
-
-
-        //    }
-
-        //    //OrdenVentaItem ord10 = new OrdenVentaItem(15213, new DateTime(2018, 2, 14, 8, 34, 45), EstadoOrden.Nueva, String.ClienteRetira, "Observacion z", "Ventas3");
-        //    //this.OrdenVentaItems.Add(ord1);
-
-
-        //}
+        
         public void AseguraCanalOk()
         {
             // carga los registros de ew y verifica que todos tengan el campo nvCanalNV asignado llamando a CargaEWSoftlandFromDB
@@ -168,12 +122,20 @@ namespace OrdVenta01
                 }
                 else
                 {
+                    // Si es ventas manda un popup con las notas que deben ser corregidas
+                    // si es bodega dice que esta esperando por datos
                     if (esVentas)
                     {
                         mensajeNvSinCanal = "Coloque el Canal De Venta a las siguientes Notas de Venta: " + mensajeNvSinCanal;
                         Console.WriteLine("Notas con peo{0}", mensajeNvSinCanal);
                         MessageBoxResult result = MessageBox.Show(mensajeNvSinCanal);
                     }
+                    else
+                    {
+                        mensajeNvSinCanal = "Espere un momento por favor, conectando....";
+                        MessageBoxResult result = MessageBox.Show(mensajeNvSinCanal);
+                    }
+
                     dataOk = false;
                 }
 
@@ -523,7 +485,7 @@ namespace OrdVenta01
                 {
                     if (ordenVentaItems.Count() > 0)  // Hay elementos en ordenVentaItems
                     {
-                        if (Convert.ToInt32(row["nvNumero"]) > ordenVentaItems.Last().NvNumero)
+                        if ((Convert.ToInt32(row["nvNumero"]) > ordenVentaItems.Last().NvNumero) && (!NvExisteEnEkNventas(Convert.ToInt32(row["nvNumero"]))))
                         {
                             OrdenVentaItem ovItem = new OrdenVentaItem();
 
@@ -781,6 +743,23 @@ namespace OrdVenta01
             
         }
 
+        private bool NvExisteEnEkNventas(int _nvNumero)
+        //
+        // Regresa true si la primary key _nvNumero em que se paso como parametro esta en la datatable ekNventas
+        //
+        {
+
+            DataRow foundRow = mIKO2016DataSet1.ek_nventa.Rows.Find(_nvNumero);
+            if (foundRow != null)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
         //private void ButtonEstado3_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
         //{
         //    Console.WriteLine("WW");

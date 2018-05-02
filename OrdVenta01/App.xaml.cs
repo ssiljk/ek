@@ -524,7 +524,7 @@ namespace OrdVenta01
 
         public void CargaRecurrenteFromDB()
         {
-            DataRow drCurrent;
+            //DataRow drCurrent;
             DataRow[] currentRows;
             DataRow[] cliCurrent;
             int i = 0;
@@ -586,46 +586,46 @@ namespace OrdVenta01
                             this.OrdenVentaItems.Add(ovItem);
 
                             // se obtiene un nuevo registro para la datatable ek
-                            drCurrent = mIKO2016DataSet1.ek_nventa.NewRow();
+                            //drCurrent = mIKO2016DataSet1.ek_nventa.NewRow();
 
                             // se modifican los campos del registro de la datatable ek
 
-                            drCurrent["nvNumero"] = ovItem.NvNumero;
-                            drCurrent["dateCreacion"] = ovItem.DateCreacion;
-                            drCurrent["dateRecepcion"] = ovItem.DateRecepcion;
-                            drCurrent["dateLista"] = ovItem.DateLista;
-                            drCurrent["dateEntrega"] = ovItem.DateEntrega;
-                            drCurrent["estado1"] = ovItem.Estado1;
-                            drCurrent["estado2"] = ovItem.Estado2;
-                            drCurrent["estado3"] = ovItem.Estado3;
-                            drCurrent["estado4"] = ovItem.Estado4;
-                            drCurrent["observ1"] = ovItem.Observ1.Substring(0, Math.Min(50, ovItem.Observ1.Length)); // maximo 50 Caracteres
-                            drCurrent["observ2"] = ovItem.Observ2;
-                            drCurrent["observ3"] = ovItem.Observ3;
-                            drCurrent["observ4"] = ovItem.Observ4;
-                            drCurrent["dateAux"] = ovItem.DateAux;
-                            drCurrent["CodCliente"] = ovItem.CodCliente;
+                            //drCurrent["nvNumero"] = ovItem.NvNumero;
+                            //drCurrent["dateCreacion"] = ovItem.DateCreacion;
+                            //drCurrent["dateRecepcion"] = ovItem.DateRecepcion;
+                            //drCurrent["dateLista"] = ovItem.DateLista;
+                            //drCurrent["dateEntrega"] = ovItem.DateEntrega;
+                            //drCurrent["estado1"] = ovItem.Estado1;
+                            //drCurrent["estado2"] = ovItem.Estado2;
+                            //drCurrent["estado3"] = ovItem.Estado3;
+                            //drCurrent["estado4"] = ovItem.Estado4;
+                            //drCurrent["observ1"] = ovItem.Observ1.Substring(0, Math.Min(50, ovItem.Observ1.Length)); // maximo 50 Caracteres
+                            //drCurrent["observ2"] = ovItem.Observ2;
+                            //drCurrent["observ3"] = ovItem.Observ3;
+                            //drCurrent["observ4"] = ovItem.Observ4;
+                            //drCurrent["dateAux"] = ovItem.DateAux;
+                            //drCurrent["CodCliente"] = ovItem.CodCliente;
 
                             //  Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
-                            if (drCurrent != null)
-                                try
-                                {
-                                    //se agrega el nuevo registro a la datatable ek
+                            //if (drCurrent != null)
+                            //    try
+                            //    {
+                            //        //se agrega el nuevo registro a la datatable ek
 
-                                    mIKO2016DataSet1.ek_nventa.Rows.Add(drCurrent);
+                            //        mIKO2016DataSet1.ek_nventa.Rows.Add(drCurrent);
 
-                                    //  update de la BD con el tableadapter de ek
+                            //        //  update de la BD con el tableadapter de ek
 
-                                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
-                                    mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
-                                    Console.WriteLine("ek-recurrent Updated\t");
-                                }
-                                catch (System.Exception ex)
-                                {
+                            //        SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
+                            //        mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
+                            //        Console.WriteLine("ek-recurrent Updated\t");
+                            //    }
+                            //    catch (System.Exception ex)
+                            //    {
 
-                                    //Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
-                                    Console.WriteLine("Exception {0}", ex);
-                                }
+                            //        //Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
+                            //        Console.WriteLine("Exception {0}", ex);
+                            //    }
                         }
                     }
                     else // No hay elementos en ordenVentaItems pero si hay en ew
@@ -675,47 +675,47 @@ namespace OrdVenta01
                                 // se agrega un nuevo objeto a la coleccion
                                 this.OrdenVentaItems.Add(ovItem);
 
-                                // se obtiene un nuevo registro para la datatable ek
-                                drCurrent = mIKO2016DataSet1.ek_nventa.NewRow();
+                                //// se obtiene un nuevo registro para la datatable ek
+                                //drCurrent = mIKO2016DataSet1.ek_nventa.NewRow();
 
-                                // se modifican los campos del registro de la datatable ek
+                                //// se modifican los campos del registro de la datatable ek
 
-                                drCurrent["nvNumero"] = ovItem.NvNumero;
-                                drCurrent["dateCreacion"] = ovItem.DateCreacion;
-                                drCurrent["dateRecepcion"] = ovItem.DateRecepcion;
-                                drCurrent["dateLista"] = ovItem.DateLista;
-                                drCurrent["dateEntrega"] = ovItem.DateEntrega;
-                                drCurrent["estado1"] = ovItem.Estado1;
-                                drCurrent["estado2"] = ovItem.Estado2;
-                                drCurrent["estado3"] = ovItem.Estado3;
-                                drCurrent["estado4"] = ovItem.Estado4;
-                                drCurrent["observ1"] = ovItem.Observ1.Substring(0, Math.Min(50, ovItem.Observ1.Length)); // maximo 50 Caracteres
-                                drCurrent["observ2"] = ovItem.Observ2;
-                                drCurrent["observ3"] = ovItem.Observ3;
-                                drCurrent["observ4"] = ovItem.Observ4;
-                                drCurrent["dateAux"] = ovItem.DateAux;
-                                drCurrent["CodCliente"] = ovItem.CodCliente;
+                                //drCurrent["nvNumero"] = ovItem.NvNumero;
+                                //drCurrent["dateCreacion"] = ovItem.DateCreacion;
+                                //drCurrent["dateRecepcion"] = ovItem.DateRecepcion;
+                                //drCurrent["dateLista"] = ovItem.DateLista;
+                                //drCurrent["dateEntrega"] = ovItem.DateEntrega;
+                                //drCurrent["estado1"] = ovItem.Estado1;
+                                //drCurrent["estado2"] = ovItem.Estado2;
+                                //drCurrent["estado3"] = ovItem.Estado3;
+                                //drCurrent["estado4"] = ovItem.Estado4;
+                                //drCurrent["observ1"] = ovItem.Observ1.Substring(0, Math.Min(50, ovItem.Observ1.Length)); // maximo 50 Caracteres
+                                //drCurrent["observ2"] = ovItem.Observ2;
+                                //drCurrent["observ3"] = ovItem.Observ3;
+                                //drCurrent["observ4"] = ovItem.Observ4;
+                                //drCurrent["dateAux"] = ovItem.DateAux;
+                                //drCurrent["CodCliente"] = ovItem.CodCliente;
 
                                 //  Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
-                                if (drCurrent != null)
-                                    try
-                                    {
-                                        //se agrega el nuevo registro a la datatable ek
+                                //if (drCurrent != null)
+                                //    try
+                                //    {
+                                //        //se agrega el nuevo registro a la datatable ek
 
-                                        mIKO2016DataSet1.ek_nventa.Rows.Add(drCurrent);
+                                //        mIKO2016DataSet1.ek_nventa.Rows.Add(drCurrent);
 
-                                        //  update de la BD con el tableadapter de ek
+                                //        //  update de la BD con el tableadapter de ek
 
-                                        SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
-                                        mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
-                                        Console.WriteLine("ek-recurrent Updated\t");
-                                    }
-                                    catch (System.Exception ex)
-                                    {
+                                //        SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
+                                //        mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
+                                //        Console.WriteLine("ek-recurrent Updated\t");
+                                //    }
+                                //    catch (System.Exception ex)
+                                //    {
 
-                                        //Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
-                                        Console.WriteLine("Exception {0}", ex);
-                                    }
+                                //        //Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
+                                //        Console.WriteLine("Exception {0}", ex);
+                                //    }
 
                             }  //Si el registro de ew no es mayor que el ultimo de ek entonces no hacemos nada, que pase al siguiente}
                         } 
@@ -755,46 +755,46 @@ namespace OrdVenta01
                             this.OrdenVentaItems.Add(ovItem);
 
                             // se obtiene un nuevo registro para la datatable ek
-                            drCurrent = mIKO2016DataSet1.ek_nventa.NewRow();
+                            //drCurrent = mIKO2016DataSet1.ek_nventa.NewRow();
 
-                            // se modifican los campos del registro de la datatable ek
+                            //// se modifican los campos del registro de la datatable ek
 
-                            drCurrent["nvNumero"] = ovItem.NvNumero;
-                            drCurrent["dateCreacion"] = ovItem.DateCreacion;
-                            drCurrent["dateRecepcion"] = ovItem.DateRecepcion;
-                            drCurrent["dateLista"] = ovItem.DateLista;
-                            drCurrent["dateEntrega"] = ovItem.DateEntrega;
-                            drCurrent["estado1"] = ovItem.Estado1;
-                            drCurrent["estado2"] = ovItem.Estado2;
-                            drCurrent["estado3"] = ovItem.Estado3;
-                            drCurrent["estado4"] = ovItem.Estado4;
-                            drCurrent["observ1"] = ovItem.Observ1.Substring(0, Math.Min(50, ovItem.Observ1.Length)); // maximo 50 Caracteres
-                            drCurrent["observ2"] = ovItem.Observ2;
-                            drCurrent["observ3"] = ovItem.Observ3;
-                            drCurrent["observ4"] = ovItem.Observ4;
-                            drCurrent["dateAux"] = ovItem.DateAux;
-                            drCurrent["CodCliente"] = ovItem.CodCliente;
+                            //drCurrent["nvNumero"] = ovItem.NvNumero;
+                            //drCurrent["dateCreacion"] = ovItem.DateCreacion;
+                            //drCurrent["dateRecepcion"] = ovItem.DateRecepcion;
+                            //drCurrent["dateLista"] = ovItem.DateLista;
+                            //drCurrent["dateEntrega"] = ovItem.DateEntrega;
+                            //drCurrent["estado1"] = ovItem.Estado1;
+                            //drCurrent["estado2"] = ovItem.Estado2;
+                            //drCurrent["estado3"] = ovItem.Estado3;
+                            //drCurrent["estado4"] = ovItem.Estado4;
+                            //drCurrent["observ1"] = ovItem.Observ1.Substring(0, Math.Min(50, ovItem.Observ1.Length)); // maximo 50 Caracteres
+                            //drCurrent["observ2"] = ovItem.Observ2;
+                            //drCurrent["observ3"] = ovItem.Observ3;
+                            //drCurrent["observ4"] = ovItem.Observ4;
+                            //drCurrent["dateAux"] = ovItem.DateAux;
+                            //drCurrent["CodCliente"] = ovItem.CodCliente;
 
                             //  Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
-                            if (drCurrent != null)
-                                try
-                                {
-                                    //se agrega el nuevo registro a la datatable ek
+                            //if (drCurrent != null)
+                            //    try
+                            //    {
+                            //        //se agrega el nuevo registro a la datatable ek
 
-                                    mIKO2016DataSet1.ek_nventa.Rows.Add(drCurrent);
+                            //        mIKO2016DataSet1.ek_nventa.Rows.Add(drCurrent);
 
-                                    //  update de la BD con el tableadapter de ek
+                            //        //  update de la BD con el tableadapter de ek
 
-                                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
-                                    mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
-                                    Console.WriteLine("ek-recurrent Updated\t");
-                                }
-                                catch (System.Exception ex)
-                                {
+                            //        SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
+                            //        mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
+                            //        Console.WriteLine("ek-recurrent Updated\t");
+                            //    }
+                            //    catch (System.Exception ex)
+                            //    {
 
-                                    //Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
-                                    Console.WriteLine("Exception {0}", ex);
-                                }
+                            //        //Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
+                            //        Console.WriteLine("Exception {0}", ex);
+                            //    }
 
                         }
 

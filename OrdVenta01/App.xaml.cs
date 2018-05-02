@@ -550,7 +550,7 @@ namespace OrdVenta01
                 {
                     if (ordenVentaItems.Count() > 0)  // Hay elementos en ordenVentaItems
                     {
-                        if (Convert.ToInt32(row["nvNumero"]) > ordenVentaItems.Last().NvNumero)
+                        if ((Convert.ToInt32(row["nvNumero"]) > ordenVentaItems.Last().NvNumero) && (!NvEntregadaEnEkNventas(Convert.ToInt32(row["nvNumero"]))))
                         {
                             OrdenVentaItem ovItem = new OrdenVentaItem();
 
@@ -806,6 +806,31 @@ namespace OrdVenta01
             }
             
             
+        }
+
+        private bool NvEntregadaEnEkNventas(int _nvNumero)
+        //
+        // Regresa true si la primary key _nvNumero em que se paso como parametro esta en la datatable ekNventas
+        //
+        {
+
+            DataRow foundRow = mIKO2016DataSet1.ek_nventa.Rows.Find(_nvNumero);
+            if (foundRow != null)
+            {
+                if(Convert.ToString(foundRow["Estado3"]).Trim() == "Entregada")
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                return false;
+            }
+
         }
 
         //private void ButtonEstado3_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)

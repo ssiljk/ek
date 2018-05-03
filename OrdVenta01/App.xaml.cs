@@ -923,7 +923,15 @@ namespace OrdVenta01
                 Console.WriteLine("ov{0}", ovi.NvNumero);
 
                 SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
-                mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
+                try
+                {
+                    mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
+                }
+                catch (System.Exception ex)
+                {
+                    Console.WriteLine("Exception update datatable ek  ListoMousedown {0}", ex);
+                }
+
             }
         }
 
@@ -960,7 +968,15 @@ namespace OrdVenta01
                 Console.WriteLine("ov{0}", ovi.NvNumero);
 
                 SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
-                mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
+                try
+                {
+                    mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
+                }
+                catch (System.Exception ex)
+                {
+                    Console.WriteLine("Exception update datatable ek  Entregadomousedown {0}", ex);
+                }
+
             }
         }
 

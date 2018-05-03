@@ -878,7 +878,15 @@ namespace OrdVenta01
                 PrintReportWhenReceived pr = new PrintReportWhenReceived();
                 pr.PrintReport(ovi.NvNumero);
                 SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
-                mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
+                try
+                {
+                    mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
+                }
+                catch (System.Exception ex)
+                {
+                    Console.WriteLine("Exception update datatable ek  RecibidoMousedown {0}", ex);
+                }
+
             }
         }
 

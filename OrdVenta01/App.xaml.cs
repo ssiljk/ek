@@ -324,13 +324,21 @@ namespace OrdVenta01
                 {
 
                     Console.WriteLine("Reg DB{0}\t",ovItem.NvNumero );
-                    Console.WriteLine("Exception {0}", ex);
+                    Console.WriteLine("Exception agregando a datatable ek {0}", ex);
                 }
                 //  update de la BD con el tableadapter de ek
+                try
+                {
+                    SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
+                    mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
+                    Console.WriteLine("ek Updated\t");
+                }
+                catch (System.Exception ex)
+                {
 
-                SqlCommandBuilder objCommandBuilder = new SqlCommandBuilder();
-                mIKO2016DataSet1ek_nventaTableAdapter.Update(mIKO2016DataSet1.ek_nventa);
-                Console.WriteLine("ek Updated\t");
+                    Console.WriteLine("Reg DB{0}\t", ovItem.NvNumero);
+                    Console.WriteLine("Exception update datatable ek  CargaInicialColeccionDesdeEw {0}", ex);
+                }
             }
             foreach(var itr in OrdenVentaItems)
             {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OrdVenta01"
         mc:Ignorable="d"
-        Title="Ordenes de Venta-Bodega-V1.0.1.9" Height="1920" Width="1100"
+        Title="Ordenes de Venta-Bodega-V1.0.1.10" Height="1920" Width="1100"
         Topmost="False">
     <Window.Resources>
 

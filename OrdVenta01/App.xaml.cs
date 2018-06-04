@@ -744,7 +744,7 @@ namespace OrdVenta01
 
                     }
 
-                      Console.WriteLine("Last={0}", ordenVentaItems.Last().NvNumero);
+                     // Console.WriteLine("Last={0}", ordenVentaItems.Last().NvNumero);
                 }
             }
             

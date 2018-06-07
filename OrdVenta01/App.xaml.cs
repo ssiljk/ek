@@ -637,7 +637,7 @@ namespace OrdVenta01
 
                         if (rowsEk.Length > 0) // si hay registros de hoy en ek
                         {
-                            if (Convert.ToInt32(row["nvNumero"]) > (Convert.ToInt32(rowsEk[rowsEk.Length-1]["NVNumero"])))
+                            if (!NvEntregadaEnEkNventas(Convert.ToInt32(row["nvNumero"])))
                             //  El registro de ew es mayor que el ultimo de ek
                             // Hay que agregar el registro a ordenVentaItems
                             // e insertarlo en ek
